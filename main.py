@@ -27,45 +27,15 @@ print("\nObservations with more than 300 fatalities")
 select3=df.loc[df['fallecimientos'] >= 300.0]
 print(select3)
 
-df5 = pd.read_csv('spain2.csv')
-validloop = False
-while validloop is not True:
-    d = int(input("select a day (In number from 1 to 31): "))
-    if d>0 and d<32:
-        validloop = True
-        d=str(d)
-        if len(d)<2:
-            d = str("0"+d)
-    else:
-        print("Make sure to enter a valid day (In number from 1 to 31)")
+df5 = pd.read_csv('nacional_covid19.csv')
+y = input("select a year:")
+m = input("select a month: ")
+d = input("select a day:")
 
+x = str(y+"-"+m+"-"+d)
 
-validloop = False
-while validloop is not True:
-    m = int(input("Select a month (In number from 1 to 12): "))
-    if m>0 and m<13:
-        validloop = True
-        m=str(m)
-        if len(m)<2:
-            m = str("0"+m)
-    else:
-        print("Make sure to enter a valid month (In number from 1 to 12)")
-
-validloop = False
-while validloop is not True:
-    y = int(input("select a year: "))
-    if y>=2020 and y<=2022:
-        validloop = True
-        y = str(y)
-    else:
-        print("Make sure to enter a value between 2020 and 2022")
-
-x = str(d+"-"+m+"-"+y)
-
-select4 = df.loc[df['fecha']== x]
-print("The data for the selected date is:\n",select4)
-for i in df.columns:
-    print(select4[i])
+df6 = df5.loc[df5['fecha'] == x]
+print(df6)
 
 #First plot on fatalities vs cases
 plt.plot(df["casos_total"], df["fallecimientos"], 'r-', linewidth=0.1)
