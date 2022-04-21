@@ -10,6 +10,7 @@ import statsmodels.formula.api as smf
 df = pd.read_csv('spain2.csv')
 df["fecha"]= df["fecha"].str.replace("/", "-")
 df.reset_index(inplace=True)
+df['fecha'] = pd.to_datetime(df.fecha)
 
 print("\nThe lenght of the data is:", len(df))
 # to show the dimensions of the pandas dataset
